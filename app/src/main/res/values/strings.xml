@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">JuegoAndroid</string>
+    <string name="facil">Facil</string>
+    <string name="dificil">Dificil</string>
+    <string name="normal">Normal</string>
+    <string name="dificultad">Elige la dificultad:</string>
+    <string name="jugadores">Elige el numero de jugadores:</string>
+    <string name="empezar">Empezar</string>
+    <string name="salir">Salir</string>
+    <string name="error">Debes seleccionar dificultad y numero de jugadores</string>
+</resources>
