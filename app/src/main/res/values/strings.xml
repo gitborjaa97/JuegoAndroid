@@ -8,4 +8,10 @@
     <string name="empezar">Empezar</string>
     <string name="salir">Salir</string>
     <string name="error">Debes seleccionar dificultad y numero de jugadores</string>
+    <string name="ronda">Ronda: 1</string>
+    <string name="prueba">Esto es una pregunta de prueba. Sirve simplemente para medir la longitud necesaria para la caja de texto.<br/>¿Vale asi?</string>
+    <string name="respuesta_prueba">Prueba de respuesta</string>
+    <string name="respuesta_prueba2">Prueba de respuesta mas larga</string>
+    <string name="saltar">Saltar</string>
+    <string name="aceptar">Aceptar</string>
 </resources>
