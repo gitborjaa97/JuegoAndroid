@@ -1,7 +1,9 @@
 package com.example.juegoandroid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +18,12 @@ import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity {
 
+    int n = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Button jugar = findViewById(R.id.btn_empezar);
         inicializarRGs();
@@ -31,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
                 String dificultad = getDificultad();
 
                 if(nJugadores != -1 || dificultad != null){
-                    //Pasar a la siguiente pantalla dificultad y numero de jugadores
-                    showToast("Todo correcto");
+                    Intent i = new Intent(MainActivity.this, PantallaPreguntas.class);
+                    i.putExtra("jugadores", nJugadores);
+                    i.putExtra("dificultad", dificultad);
+                    startActivity(i);
                 }else{
                     showToast(getString(R.string.error));
                 }
@@ -65,6 +71,16 @@ public class MainActivity extends AppCompatActivity {
         rg1.check(R.id.medio);
         rg1 = findViewById(R.id.rg_jugadores);
         rg1.check(R.id.j2);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        RadioGroup rg = findViewById(R.id.rg_dificultad);
+        outState.putInt("dificultad", rg.getCheckedRadioButtonId());
+        rg = findViewById(R.id.rg_jugadores);
+        outState.putInt("jugadores", rg.getCheckedRadioButtonId());
+        outState.putInt("n", n);
     }
 
 }
