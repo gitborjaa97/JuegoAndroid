@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JuegoAndroid</string>
+    <string name="app_name">Check it</string>
     <string name="facil">Facil</string>
     <string name="dificil">Dificil</string>
     <string name="normal">Normal</string>
@@ -14,5 +14,9 @@
     <string name="respuesta_prueba">Prueba de respuesta</string>
     <string name="respuesta_prueba2">Prueba de respuesta mas larga</string>
     <string name="saltar">Saltar</string>
-    <string name="aceptar">Aceptar</string>
+    <string name="aceptar">Siguiente</string>
+    <string name="seleciona">Selecciona respuesta o pasa</string>
+    <string name="fallo">Fallo</string>
+    <string name="acierto">Correcto</string>
+    <string name="ganador">Ha ganado el jugador %1$d</string>
 </resources>

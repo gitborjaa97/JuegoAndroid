@@ -12,34 +12,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Turno: Jugador 1"
-        android:textSize="16dp"
         android:textColor="@color/black"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.138" />
 
-    <TextView
-        android:id="@+id/ronda"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/saltar"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="@string/ronda"
-        android:textSize="16dp"
-        android:textColor="@color/black"
+        android:text="@string/saltar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toEndOf="@+id/turno"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/respuestas"
+        app:layout_constraintVertical_bias="0.377" />
+
+    <Button
+        android:id="@+id/aceptar"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="@string/aceptar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/respuestas"
+        app:layout_constraintVertical_bias="0.377" />
 
     <TextView
         android:id="@+id/pregunta"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="52dp"
         android:text="@string/prueba"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -47,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.266" />
 
     <RadioGroup
         android:id="@+id/respuestas"
@@ -56,10 +66,10 @@
         android:padding="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/pregunta"
-        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="@+id/pregunta"
         app:layout_constraintTop_toBottomOf="@+id/pregunta"
-        app:layout_constraintVertical_bias="0.103">
+        app:layout_constraintVertical_bias="0.127">
 
         <RadioButton
             android:id="@+id/respuesta1"
@@ -86,29 +96,19 @@
             android:textSize="16dp" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/saltar"
-        android:layout_width="110dp"
+    <TextView
+        android:id="@+id/ronda"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/ronda"
+        android:textColor="@color/black"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/saltar"
-        app:layout_constraintHorizontal_bias="0.182"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/respuestas"
-        app:layout_constraintVertical_bias="0.29" />
-
-    <Button
-        android:id="@+id/aceptar"
-        android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.829"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/aceptar"
-        app:layout_constraintTop_toBottomOf="@+id/respuestas"
-        app:layout_constraintVertical_bias="0.288" />
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintStart_toEndOf="@+id/turno"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

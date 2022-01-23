@@ -3,8 +3,12 @@ package com.example.juegoandroid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -15,6 +19,7 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
@@ -27,7 +32,7 @@ public class PantallaPreguntas extends AppCompatActivity {
     private ArrayList<Pregunta> preguntas = new ArrayList<>();
     private Pregunta preguntaActual;
     private int respuestaCorrecta;
-    private int dificultad = 3;
+    private int dificultad ;
     private int[] puntuacion;
 
     @Override
@@ -38,9 +43,11 @@ public class PantallaPreguntas extends AppCompatActivity {
         if(savedInstanceState == null) {
             datos = getIntent().getExtras();
             jugadores = datos.getInt("jugadores");
+            dificultad = datos.getInt("dificultad");
             puntuacion = new int[jugadores];
             preguntas = crearArrayDeFichero(this);
             preguntaActual = preguntaAleatoria();
+            respuestaCorrecta = preguntaActual.getRespuestaCorrecta();
             cargarPregunta(preguntaActual);
             actualizarRonda(true);
             actualizarJugador(true);
@@ -50,9 +57,20 @@ public class PantallaPreguntas extends AppCompatActivity {
         siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                aniadirPuntuacion(-1);
-                cargarPregunta(preguntaAleatoria());
-                actualizarJugador(true);
+                RadioGroup rg = findViewById(R.id.respuestas);
+
+                if(rg.getCheckedRadioButtonId() != -1) {
+                    if (comprobarRespuesta()) {
+                        aniadirPuntuacion(2);
+                        showToast(getString(R.string.acierto));
+                    }else{
+                        showToast(getString(R.string.fallo));
+                    }
+                    actualizarJugador(true);
+                    cargarPregunta(preguntaAleatoria());
+                }else{
+                    showToast(getString(R.string.seleciona));
+                }
             }
         });
 
@@ -74,6 +92,11 @@ public class PantallaPreguntas extends AppCompatActivity {
         outState.putInt("jugadorAc",jugadorActual);
         outState.putInt("nJug", jugadores);
         outState.putInt("ronda",ronda);
+        outState.putInt("dificultad", dificultad);
+        outState.putIntArray("puntuacion", puntuacion);
+        outState.putParcelableArrayList("preguntas", preguntas);
+        outState.putParcelable("preguntaActual", preguntaActual);
+        outState.putInt("respuestaCorrecta", respuestaCorrecta);
     }
 
     @Override
@@ -82,26 +105,45 @@ public class PantallaPreguntas extends AppCompatActivity {
         jugadorActual = savedInstanceState.getInt("jugadorAc");
         jugadores = savedInstanceState.getInt("nJug");
         ronda = savedInstanceState.getInt("ronda");
+        dificultad = savedInstanceState.getInt("dificultad");
         actualizarRonda(false);
         actualizarJugador(false);
+        preguntaActual = savedInstanceState.getParcelable("preguntaActual");
+        respuestaCorrecta = savedInstanceState.getInt("respuestaCorrecta");
+        cargarPregunta(preguntaActual);
+        puntuacion = savedInstanceState.getIntArray("puntuacion");
+        preguntas = savedInstanceState.getParcelableArrayList("preguntas");
+    }
+
+    private boolean comprobarRespuesta(){
+        RadioGroup rg = findViewById(R.id.respuestas);
+        int checked = rg.indexOfChild(findViewById(rg.getCheckedRadioButtonId()));
+        boolean acierto = false;
+        if(checked == respuestaCorrecta)
+            acierto = true;
+
+        return acierto;
     }
 
     private void showToast(String mensaje){
-        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
     }
 
     private void cargarPregunta(Pregunta pregunta){
         TextView text = findViewById(R.id.pregunta);
         text.setText(pregunta.getPregunta());
         respuestaCorrecta = pregunta.getRespuestaCorrecta();
-
         String[] respuestas = pregunta.getRespuestas();
+
         RadioButton respuesta =findViewById(R.id.respuesta1);
         respuesta.setText(respuestas[0]);
         respuesta =findViewById(R.id.respuesta2);
         respuesta.setText(respuestas[1]);
         respuesta =findViewById(R.id.respuesta3);
         respuesta.setText(respuestas[2]);
+
+        RadioGroup rg = findViewById(R.id.respuestas);
+        rg.check(-1);
     }
 
     private Pregunta preguntaAleatoria(){
@@ -126,7 +168,8 @@ public class PantallaPreguntas extends AppCompatActivity {
     private ArrayList<Pregunta> crearArrayDeFichero(Context context){
         ArrayList<Pregunta> preguntas = new ArrayList<>();
         try {
-            InputStreamReader isr = new InputStreamReader(context.openFileInput("preguntas.txt"));
+            InputStream is = context.getResources().openRawResource(R.raw.preguntas);
+            InputStreamReader isr = new InputStreamReader(is, "UTF8");
             BufferedReader br = new BufferedReader(isr);
             String linea;
             while ((linea = br.readLine())!= null){
@@ -157,9 +200,32 @@ public class PantallaPreguntas extends AppCompatActivity {
     private void actualizarRonda(boolean nuevo){
         if(nuevo)
             ronda++;
-        String recurso = getResources().getString(R.string.ronda);
+        if(ronda == 6) {
+            terminarPartida();
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        }
+        String recurso = getString(R.string.ronda);
         String mostrar = String.format(recurso,ronda);
         TextView text = findViewById(R.id.ronda);
         text.setText(mostrar);
+    }
+
+    private void terminarPartida(){
+        Intent intent = new Intent();
+        intent.putExtra("ganador", getGanador());
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+    }
+
+    private String getGanador(){
+        int ganador = 0;
+
+        for(int i : puntuacion){
+            if(i > ganador)
+                ganador = i;
+        }
+        String recurso = getString(R.string.ganador);
+        return String.format(recurso, ganador);
     }
 }

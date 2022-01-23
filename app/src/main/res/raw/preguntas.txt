@@ -1,0 +1,7 @@
+¿Cual es el rio mas largo del mundo?,Amazonas,Ebro,Duero,0,0
+¿Cual de las siguientes montañas es la mas alta del continente Africano?,Kilimanjaro,Mount Gessi,Monte Kenia,0,2
+Si alguien dice "Vamos a ver el Big Ben" en que ciudad europea se encuentra:,Paris,Madrid,Londres,2,1
+¿Quien fue el primer presidente Español despues de la caida del regimen de Francisco Franco?,Adolfo Suarez,Felipe Gonzalez,Carlos Arias,0,2
+¿Que pais alberga el mayor numero de habitantes?,Rusia,EEUU,China,2,2
+¿Cual es la marca mas antigua de coches?,Peugeot,Ford,Seat,0,2
+¿Como se llama el actual presidente español?,Pablo Iglesias,Pablo Casado,Pedro Sanchez,2,0

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Check it</string>
+    <string name="facil">Easy</string>
+    <string name="dificil">Dificult</string>
+    <string name="normal">Medium</string>
+    <string name="dificultad">Choose your dificultie:</string>
+    <string name="jugadores">Choose numbre of players:</string>
+    <string name="empezar">Start</string>
+    <string name="salir">Exit</string>
+    <string name="error">You should choose dificultie and number of players</string>
+    <string name="ronda">Round: %1$d</string>
+    <string name="turno">Turn: Player %1$d</string>
+    <string name="prueba">Esto es una pregunta de prueba. Sirve simplemente para medir la longitud necesaria para la caja de texto.<br/>¿Vale asi?</string>
+    <string name="respuesta_prueba">Prueba de respuesta</string>
+    <string name="respuesta_prueba2">Prueba de respuesta mas larga</string>
+    <string name="saltar">Skip</string>
+    <string name="aceptar">Next</string>
+    <string name="seleciona">Choose answer or skip</string>
+    <string name="fallo">Wrong</string>
+    <string name="acierto">Right</string>
+    <string name="ganador">Player %1$d has win</string>
+</resources>

@@ -1,6 +1,9 @@
 package com.example.juegoandroid;
 
-public class Pregunta {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pregunta implements Parcelable {
 
     private String[] respuestas;
     private String pregunta;
@@ -13,6 +16,25 @@ public class Pregunta {
         this.respuestaCorrecta = respuestaCorrecta;
         this.dificultad = dificultad;
     }
+
+    protected Pregunta(Parcel in) {
+        respuestas = in.createStringArray();
+        pregunta = in.readString();
+        respuestaCorrecta = in.readInt();
+        dificultad = in.readInt();
+    }
+
+    public static final Creator<Pregunta> CREATOR = new Creator<Pregunta>() {
+        @Override
+        public Pregunta createFromParcel(Parcel in) {
+            return new Pregunta(in);
+        }
+
+        @Override
+        public Pregunta[] newArray(int size) {
+            return new Pregunta[size];
+        }
+    };
 
     public String[] getRespuestas() {
         return respuestas;
@@ -28,5 +50,18 @@ public class Pregunta {
 
     public int getDificultad() {
         return dificultad;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeStringArray(respuestas);
+        dest.writeString(pregunta);
+        dest.writeInt(respuestaCorrecta);
+        dest.writeInt(dificultad);
     }
 }
