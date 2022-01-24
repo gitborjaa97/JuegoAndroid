@@ -200,11 +200,9 @@ public class PantallaPreguntas extends AppCompatActivity {
     private void actualizarRonda(boolean nuevo){
         if(nuevo)
             ronda++;
-        if(ronda == 6) {
+        if(ronda == 6)
             terminarPartida();
-            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        }
+
         String recurso = getString(R.string.ronda);
         String mostrar = String.format(recurso,ronda);
         TextView text = findViewById(R.id.ronda);
@@ -212,6 +210,8 @@ public class PantallaPreguntas extends AppCompatActivity {
     }
 
     private void terminarPartida(){
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
         Intent intent = new Intent();
         intent.putExtra("ganador", getGanador());
         setResult(Activity.RESULT_OK, intent);
@@ -220,12 +220,14 @@ public class PantallaPreguntas extends AppCompatActivity {
 
     private String getGanador(){
         int ganador = 0;
-
-        for(int i : puntuacion){
-            if(i > ganador)
+        int puntuacionGanador = 0;
+        for (int i = 0; i <= puntuacion.length; i++){
+            if(puntuacion[i] > puntuacionGanador){
+                puntuacionGanador = puntuacion[i];
                 ganador = i;
+            }
         }
         String recurso = getString(R.string.ganador);
-        return String.format(recurso, ganador);
+        return String.format(recurso, ganador + 1);
     }
 }

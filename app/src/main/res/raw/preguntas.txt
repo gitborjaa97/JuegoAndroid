@@ -5,3 +5,6 @@ Si alguien dice "Vamos a ver el Big Ben" en que ciudad europea se encuentra:,Par
 ¿Que pais alberga el mayor numero de habitantes?,Rusia,EEUU,China,2,2
 ¿Cual es la marca mas antigua de coches?,Peugeot,Ford,Seat,0,2
 ¿Como se llama el actual presidente español?,Pablo Iglesias,Pablo Casado,Pedro Sanchez,2,0
+¿En que año cayo el muro de Berlin?,1992,1999,1989,2,1
+¿Que pelicula gano el oscar a mejor pelicula en el año 2015?,El Renacido,Birdman,Babel,1,2
+Cual de los siguientes es el coche mas rapido del mundo:,Ferrari F40,Hennessey Venom GT,Bugatti Chiron,2,2

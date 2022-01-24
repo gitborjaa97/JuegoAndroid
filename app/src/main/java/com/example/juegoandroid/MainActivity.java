@@ -72,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button terminar = findViewById(R.id.btn_salir);
+        terminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     @Override
