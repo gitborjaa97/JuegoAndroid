@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -35,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button jugar = findViewById(R.id.btn_empezar);
-        inicializarRGs();
+        if(savedInstanceState == null)
+            inicializarRGs();
 
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,16 +60,14 @@ public class MainActivity extends AppCompatActivity {
                 Uri appUri = Uri.parse("https://instagram.com");
                 Uri browserUri = Uri.parse("https://instagram.com/");
 
-                try{ //first try to open in instagram app
+                try{
                     Intent appIntent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");
                     if(appIntent != null){
                         appIntent.setAction(Intent.ACTION_VIEW);
                         appIntent.setData(appUri);
                         startActivity(appIntent);
                     }
-                }catch(Exception e){ //or else open in browser
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, browserUri);
-                    startActivity(browserIntent);
+                }catch(Exception e){
                 }
             }
         });
@@ -120,10 +120,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         RadioGroup rg = findViewById(R.id.rg_dificultad);
-        outState.putInt("dificultad", rg.getCheckedRadioButtonId());
+        for (int i = 0; i < 3; i++) {
+            RadioButton rb = (RadioButton) rg.getChildAt(i);
+            if(rb.isChecked()){
+                outState.putInt("dificultad", i);
+                break;
+            }
+        }
         rg = findViewById(R.id.rg_jugadores);
-        outState.putInt("jugadores", rg.getCheckedRadioButtonId());
-        outState.putInt("n", n);
+        for (int i = 0; i < 3; i++) {
+            RadioButton rb = (RadioButton) rg.getChildAt(i);
+            if(rb.isChecked()){
+                outState.putInt("jugadores", i);
+                break;
+            }
+        }
     }
 
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        RadioGroup rg = findViewById(R.id.rg_dificultad);
+        int index = savedInstanceState.getInt("dificultad");
+        rg.check(rg.getChildAt(index).getId());
+        rg = findViewById(R.id.rg_jugadores);
+        index = savedInstanceState.getInt("jugadores");
+        rg.check(rg.getChildAt(index).getId());
+    }
 }

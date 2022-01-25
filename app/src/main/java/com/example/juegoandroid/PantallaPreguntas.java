@@ -221,7 +221,7 @@ public class PantallaPreguntas extends AppCompatActivity {
     private String getGanador(){
         int ganador = 0;
         int puntuacionGanador = 0;
-        for (int i = 0; i <= puntuacion.length; i++){
+        for (int i = 0; i < puntuacion.length; i++){
             if(puntuacion[i] > puntuacionGanador){
                 puntuacionGanador = puntuacion[i];
                 ganador = i;
