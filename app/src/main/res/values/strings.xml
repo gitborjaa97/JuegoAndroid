@@ -6,11 +6,11 @@
     <string name="dificultad">Elige la dificultad:</string>
     <string name="jugadores">Elige el numero de jugadores:</string>
     <string name="empezar">Empezar</string>
-    <string name="salir">Salir</string>
+    <string name="salir">Custom</string>
     <string name="error">Debes seleccionar dificultad y numero de jugadores</string>
     <string name="ronda">Ronda: %1$d</string>
     <string name="turno">Turno: Jugador %1$d</string>
-    <string name="prueba">Esto es una pregunta de prueba. Sirve simplemente para medir la longitud necesaria para la caja de texto.<br/>¿Vale asi?</string>
+    <string name="prueba">Esto es una pregunta de prueba. Sirve simplemente para medir la longitud necesaria para la caja de texto.<br />¿Vale asi?</string>
     <string name="respuesta_prueba">Prueba de respuesta</string>
     <string name="respuesta_prueba2">Prueba de respuesta mas larga</string>
     <string name="saltar">Saltar</string>
@@ -19,4 +19,14 @@
     <string name="fallo">Fallo</string>
     <string name="acierto">Correcto</string>
     <string name="ganador">Ha ganado el jugador %1$d</string>
+    <string-array name="opciones_respuesta_correcta">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string name="introduce">Introduce pregunta</string>
+    <string name="custom_answer1">Respuesta 1</string>
+    <string name="custom_answer2">Respuesta 2</string>
+    <string name="custom_answer3">Respuesta 3</string>
+    <string name="custom_respuesta">Respuesta correcta:</string>
 </resources>

@@ -17,10 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class PantallaPreguntas extends AppCompatActivity {
@@ -180,6 +183,31 @@ public class PantallaPreguntas extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(new File(getFilesDir().toString()+"/custom.obj").exists()) {
+            preguntas.addAll(cargarCustom());
+            showToast("Se han cargado");
+        }
+        return preguntas;
+    }
+
+    private  ArrayList<Pregunta> cargarCustom(){
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
+        try {
+            InputStream is = this.openFileInput("custom.obj");
+            ObjectInputStream dis = new ObjectInputStream(is);
+            Pregunta p = null;
+            while (( p = (Pregunta) dis.readObject()) != null){
+                if(p.getDificultad() <= dificultad)
+                    preguntas.add(p);
+            }
+            dis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return preguntas;

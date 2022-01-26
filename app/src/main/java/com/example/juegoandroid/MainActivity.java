@@ -28,7 +28,6 @@ import java.io.OutputStreamWriter;
 
 public class MainActivity extends AppCompatActivity {
 
-    int n = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         terminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent i = new Intent(MainActivity.this, CustomPreguntas.class);
+                startActivity(i);
             }
         });
 
