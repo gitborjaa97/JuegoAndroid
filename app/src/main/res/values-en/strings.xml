@@ -6,8 +6,8 @@
     <string name="normal">Medium</string>
     <string name="dificultad">Choose your dificultie:</string>
     <string name="jugadores">Choose numbre of players:</string>
-    <string name="empezar">Custom</string>
-    <string name="salir">Exit</string>
+    <string name="empezar">Start</string>
+    <string name="salir">Custom</string>
     <string name="error">You should choose dificultie and number of players</string>
     <string name="ronda">Round: %1$d</string>
     <string name="turno">Turn: Player %1$d</string>
@@ -25,4 +25,5 @@
     <string name="custom_answer2">Answer 2</string>
     <string name="custom_answer3">Answer 3</string>
     <string name="custom_respuesta">Right answer:</string>
+    <string name="guardar">Save</string>
 </resources>

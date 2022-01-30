@@ -29,4 +29,5 @@
     <string name="custom_answer2">Respuesta 2</string>
     <string name="custom_answer3">Respuesta 3</string>
     <string name="custom_respuesta">Respuesta correcta:</string>
+    <string name="guardar">Guardar</string>
 </resources>

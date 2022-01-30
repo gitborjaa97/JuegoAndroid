@@ -56,18 +56,7 @@ public class MainActivity extends AppCompatActivity {
         insta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri appUri = Uri.parse("https://instagram.com");
-                Uri browserUri = Uri.parse("https://instagram.com/");
-
-                try{
-                    Intent appIntent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");
-                    if(appIntent != null){
-                        appIntent.setAction(Intent.ACTION_VIEW);
-                        appIntent.setData(appUri);
-                        startActivity(appIntent);
-                    }
-                }catch(Exception e){
-                }
+                goToURI("https://www.instagram.com/?hl=es");
             }
         });
 
@@ -80,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void goToURI(String url){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
     }
 
     @Override
